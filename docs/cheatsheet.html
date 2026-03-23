@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSD — Datasheet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap');
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: #222222;
+    --border2: #2a2a2a;
+    --text: #e8e8e8;
+    --muted: #666666;
+    --accent: #c8f53a;
+    --accent2: #3affd0;
+    --accent3: #ff5f3a;
+    --accent4: #a78bfa;
+    --code-bg: #0d0d0d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    gap: 24px;
+  }
+
+  .header-left { flex: 1; }
+
+  .logo {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -3px;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .logo span { color: var(--muted); font-weight: 400; }
+
+  .tagline {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 8px;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .install-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--accent);
+    padding: 10px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  /* GRID LAYOUT */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .span-2 { grid-column: span 2; }
+  .span-3 { grid-column: span 3; }
+
+  /* CARD */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 18px;
+  }
+
+  .card-accent-green { border-top: 2px solid var(--accent); }
+  .card-accent-teal  { border-top: 2px solid var(--accent2); }
+  .card-accent-red   { border-top: 2px solid var(--accent3); }
+  .card-accent-purple{ border-top: 2px solid var(--accent4); }
+
+  .card-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .card-title.green  { color: var(--accent); }
+  .card-title.teal   { color: var(--accent2); }
+  .card-title.red    { color: var(--accent3); }
+  .card-title.purple { color: var(--accent4); }
+
+  /* WORKFLOW */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 22px;
+    width: 1px;
+    height: 6px;
+    background: var(--border2);
+    z-index: 1;
+  }
+
+  .step-num {
+    min-width: 20px;
+    height: 20px;
+    background: var(--accent);
+    color: #000;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-body { flex: 1; }
+
+  .step-cmd {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .step-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .step-desc em {
+    color: var(--accent2);
+    font-style: normal;
+  }
+
+  .step-output {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 5px;
+  }
+
+  .step-output span {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    padding: 1px 5px;
+    margin-right: 4px;
+    color: var(--text);
+    display: inline-block;
+    margin-top: 2px;
+  }
+
+  /* COMMAND TABLE */
+  .cmd-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .cmd-table tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cmd-table tr:last-child { border-bottom: none; }
+
+  .cmd-table td {
+    padding: 7px 4px;
+    vertical-align: top;
+  }
+
+  .cmd-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-right: 12px;
+    width: 1%;
+  }
+
+  .cmd-table td:last-child {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .cmd-table .flag {
+    color: var(--accent2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* SECTION HEADER */
+  .section-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    padding: 5px 0 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+
+  /* BADGE / TAG */
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .tag-green  { background: rgba(200,245,58,0.12); color: var(--accent); border: 1px solid rgba(200,245,58,0.25); }
+  .tag-teal   { background: rgba(58,255,208,0.1);  color: var(--accent2); border: 1px solid rgba(58,255,208,0.25); }
+  .tag-red    { background: rgba(255,95,58,0.1);   color: var(--accent3); border: 1px solid rgba(255,95,58,0.25); }
+  .tag-purple { background: rgba(167,139,250,0.1); color: var(--accent4); border: 1px solid rgba(167,139,250,0.25); }
+
+  /* CONFIG TABLE */
+  .config-table { width: 100%; border-collapse: collapse; }
+  .config-table tr { border-bottom: 1px solid var(--border); }
+  .config-table tr:last-child { border-bottom: none; }
+  .config-table td { padding: 6px 4px; font-size: 11px; vertical-align: top; }
+  .config-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent4);
+    white-space: nowrap;
+    padding-right: 12px;
+    font-size: 10px;
+  }
+  .config-table td:nth-child(2) {
+    color: var(--accent2);
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+    padding-right: 12px;
+    font-size: 10px;
+  }
+  .config-table td:last-child { color: var(--muted); }
+
+  /* PROFILE TABLE */
+  .profile-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  .profile-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 5px 6px;
+    text-align: left;
+    border-bottom: 1px solid var(--border2);
+  }
+  .profile-table td {
+    padding: 6px 6px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .profile-table tr:last-child td { border-bottom: none; }
+  .profile-table td:first-child { color: var(--text); font-weight: 600; }
+  .profile-table .opus { color: var(--accent3); }
+  .profile-table .sonnet { color: var(--accent2); }
+  .profile-table .haiku { color: var(--muted); }
+  .profile-table .inherit { color: var(--accent4); }
+  .profile-table tr.recommended td { background: rgba(200,245,58,0.04); }
+  .profile-table td.row-label { color: var(--muted); font-size: 10px; }
+
+  /* FILES */
+  .files-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+
+  .file-item {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+  }
+
+  .file-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    margin-bottom: 3px;
+  }
+
+  .file-desc { font-size: 11px; color: var(--muted); }
+
+  /* TIP BOX */
+  .tip {
+    background: rgba(200,245,58,0.05);
+    border: 1px solid rgba(200,245,58,0.2);
+    border-left: 3px solid var(--accent);
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+
+  .tip strong { color: var(--accent); }
+
+  .warn {
+    background: rgba(255,95,58,0.05);
+    border: 1px solid rgba(255,95,58,0.2);
+    border-left: 3px solid var(--accent3);
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+
+  .warn strong { color: var(--accent3); }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: var(--code-bg);
+    border: 1px solid var(--border2);
+    padding: 1px 5px;
+    color: var(--accent);
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    margin-top: 24px;
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .footer-right {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .inline-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+  .divider-row {
+    grid-column: 1 / -1;
+    height: 2px;
+    margin: 6px 0 2px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">GSD <span>// get-shit-done</span></div>
+    <div style="color: var(--text); font-size: 14px; margin-top: 10px; font-weight: 600;">Meta-prompting · Context Engineering · Spec-driven Development</div>
+    <div class="tagline">$ Sistema para Claude Code — resolve context rot e entrega código confiável com agentes paralelos</div>
+    <div class="inline-tags" style="margin-top: 12px;">
+      <span class="tag tag-green">Claude Code</span>
+      <span class="tag tag-teal">Gemini CLI</span>
+      <span class="tag tag-purple">Copilot</span>
+      <span class="tag tag-red">Codex</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="install-block">$ npx get-shit-done-cc@latest</div>
+    <div class="meta">v1.28.0 · MIT · 39.8k ★ · github.com/gsd-build/get-shit-done</div>
+    <div class="meta" style="margin-top: 4px;">Recomendado: <code style="font-size:10px">claude --dangerously-skip-permissions</code></div>
+  </div>
+</div>
+
+<!-- ROW 1: WORKFLOW + CONTEXT FILES -->
+<div class="grid" style="grid-template-columns: 1.5fr 1fr; margin-bottom: 2px;">
+
+  <!-- WORKFLOW CORE -->
+  <div class="card card-accent-green">
+    <div class="card-title green">◆ Fluxo Principal — Projeto do Zero</div>
+    <div class="flow">
+
+      <div class="flow-step">
+        <div class="step-num">0</div>
+        <div class="step-body">
+          <div class="step-cmd">/gsd:map-codebase</div>
+          <div class="step-desc">Apenas se já tiver código. Agentes paralelos analisam stack, arquitetura e padrões antes de iniciar.</div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-cmd">/gsd:new-project</div>
+          <div class="step-desc">Faz perguntas → pesquisa domínio → extrai requisitos → gera roadmap por fases. <em>Você aprova o roadmap.</em></div>
+          <div class="step-output">Cria: <span>PROJECT.md</span><span>REQUIREMENTS.md</span><span>ROADMAP.md</span><span>STATE.md</span></div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-cmd">/gsd:discuss-phase N</div>
+          <div class="step-desc">Captura <em>suas decisões</em> antes de qualquer planejamento — layout, interações, comportamento. Sem isso, gera defaults razoáveis.</div>
+          <div class="step-output">Cria: <span>N-CONTEXT.md</span></div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-cmd">/gsd:plan-phase N</div>
+          <div class="step-desc">Pesquisa como implementar → cria 2–3 planos atômicos XML → verifica planos contra requisitos. Loop até passar.</div>
+          <div class="step-output">Cria: <span>N-RESEARCH.md</span><span>N-1-PLAN.md</span><span>N-2-PLAN.md</span></div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-cmd">/gsd:execute-phase N</div>
+          <div class="step-desc">Roda planos em <em>waves paralelas</em>. Contexto fresco (200k tokens) por plano. Commit atômico por tarefa. Verifica entrega.</div>
+          <div class="step-output">Cria: <span>N-N-SUMMARY.md</span><span>N-VERIFICATION.md</span></div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-cmd">/gsd:verify-work N</div>
+          <div class="step-desc">Você testa manualmente. Sistema extrai entregáveis, guia passo a passo. Falhas → diagnóstico automático + planos de fix.</div>
+          <div class="step-output">Cria: <span>N-UAT.md</span><span>fix plans (se falhar)</span></div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="step-cmd">/gsd:ship N</div>
+          <div class="step-desc">Cria PR do trabalho verificado com body gerado automaticamente. <em>--draft</em> para PR em rascunho.</div>
+        </div>
+      </div>
+
+      <div class="flow-step" style="border-left: 2px solid var(--accent);">
+        <div class="step-num" style="background: var(--accent2); color: #000;">↻</div>
+        <div class="step-body">
+          <div class="step-cmd">/gsd:next</div>
+          <div class="step-desc">Auto-detecta e executa o próximo passo. Para quem quer delegar a sequência por completo.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip" style="margin-top: 12px;">
+      <strong>Loop por fase:</strong> discuss → plan → execute → verify → ship. Repita para cada fase. Ao terminar todas: <code>/gsd:complete-milestone</code> → <code>/gsd:new-milestone</code>
+    </div>
+  </div>
+
+  <!-- CONTEXT FILES + QUICK MODE -->
+  <div style="display: flex; flex-direction: column; gap: 2px;">
+
+    <div class="card card-accent-teal">
+      <div class="card-title teal">◆ Arquivos de Contexto</div>
+      <div class="files-grid">
+        <div class="file-item">
+          <div class="file-name">PROJECT.md</div>
+          <div class="file-desc">Visão do projeto — sempre carregado</div>
+        </div>
+        <div class="file-item">
+          <div class="file-name">REQUIREMENTS.md</div>
+          <div class="file-desc">v1/v2 com rastreabilidade por fase</div>
+        </div>
+        <div class="file-item">
+          <div class="file-name">ROADMAP.md</div>
+          <div class="file-desc">Fases, status e destino do projeto</div>
+        </div>
+        <div class="file-item">
+          <div class="file-name">STATE.md</div>
+          <div class="file-desc">Decisões, bloqueios e posição atual</div>
+        </div>
+        <div class="file-item">
+          <div class="file-name">N-CONTEXT.md</div>
+          <div class="file-desc">Suas decisões de UX/UI para a fase N</div>
+        </div>
+        <div class="file-item">
+          <div class="file-name">N-RESEARCH.md</div>
+          <div class="file-desc">Pesquisa de implementação da fase N</div>
+        </div>
+        <div class="file-item">
+          <div class="file-name">N-M-PLAN.md</div>
+          <div class="file-desc">Plano atômico M da fase N (XML)</div>
+        </div>
+        <div class="file-item">
+          <div class="file-name">N-M-SUMMARY.md</div>
+          <div class="file-desc">O que aconteceu após execução</div>
+        </div>
+        <div class="file-item">
+          <div class="file-name">N-UAT.md</div>
+          <div class="file-desc">Resultado da verificação manual</div>
+        </div>
+        <div class="file-item">
+          <div class="file-name">HANDOFF.json</div>
+          <div class="file-desc">Estado para retomada de sessão</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-accent-purple">
+      <div class="card-title purple">◆ Quick Mode — Tarefas Ad-hoc</div>
+      <table class="cmd-table">
+        <tr>
+          <td>/gsd:quick</td>
+          <td>Tarefa rápida com garantias GSD (commits, tracking) — sem planning completo</td>
+        </tr>
+        <tr>
+          <td>/gsd:quick --discuss</td>
+          <td>Coleta contexto antes de planejar</td>
+        </tr>
+        <tr>
+          <td>/gsd:quick --research</td>
+          <td>Pesquisa abordagens antes de executar</td>
+        </tr>
+        <tr>
+          <td>/gsd:quick --full</td>
+          <td>Adiciona verificação de plano + verificação pós-execução</td>
+        </tr>
+        <tr>
+          <td>/gsd:fast "texto"</td>
+          <td>Tarefas triviais inline — pula planning, executa imediatamente</td>
+        </tr>
+        <tr>
+          <td>/gsd:do "texto"</td>
+          <td>Rota texto livre para o comando GSD certo automaticamente</td>
+        </tr>
+      </table>
+      <div class="tip" style="margin-top: 10px; font-size: 11px;">
+        <strong>Flags combinam:</strong> <code>--discuss --research --full</code> dá o fluxo mais completo sem ser o workflow de fases.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ROW 2: TODOS OS COMANDOS POR CATEGORIA -->
+<div class="grid grid-4" style="margin-bottom: 2px;">
+
+  <div class="card">
+    <div class="card-title">Fase & Milestone</div>
+    <table class="cmd-table">
+      <tr><td>/gsd:add-phase</td><td>Adiciona fase ao roadmap atual</td></tr>
+      <tr><td>/gsd:insert-phase N</td><td>Insere fase urgente entre fases</td></tr>
+      <tr><td>/gsd:remove-phase N</td><td>Remove fase futura, renumera</td></tr>
+      <tr><td>/gsd:list-phase-assumptions N</td><td>Vê abordagem que Claude usaria antes de planejar</td></tr>
+      <tr><td>/gsd:plan-milestone-gaps</td><td>Cria fases para fechar lacunas de auditoria</td></tr>
+      <tr><td>/gsd:audit-milestone</td><td>Verifica se milestone atingiu definition of done</td></tr>
+      <tr><td>/gsd:complete-milestone</td><td>Arquiva milestone, cria tag de release</td></tr>
+      <tr><td>/gsd:new-milestone [nome]</td><td>Inicia próxima versão — mesmo fluxo do new-project</td></tr>
+      <tr><td>/gsd:milestone-summary [v]</td><td>Resumo completo para onboarding de time</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sessão & Navegação</div>
+    <table class="cmd-table">
+      <tr><td>/gsd:progress</td><td>Onde estou? O que vem a seguir?</td></tr>
+      <tr><td>/gsd:next</td><td>Auto-detecta e executa próximo passo</td></tr>
+      <tr><td>/gsd:pause-work</td><td>Cria handoff ao parar no meio de uma fase</td></tr>
+      <tr><td>/gsd:resume-work</td><td>Restaura da última sessão</td></tr>
+      <tr><td>/gsd:session-report</td><td>Relatório do que foi feito na sessão</td></tr>
+      <tr><td>/gsd:manager</td><td>Centro de comando interativo multi-fase</td></tr>
+      <tr><td>/gsd:help</td><td>Todos os comandos e guia de uso</td></tr>
+      <tr><td>/gsd:update</td><td>Atualiza GSD com preview do changelog</td></tr>
+      <tr><td>/gsd:stats</td><td>Métricas do projeto — fases, planos, git</td></tr>
+      <tr><td>/gsd:health [--repair]</td><td>Valida integridade do .planning/, auto-repara</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Backlog, Notas & Threads</div>
+    <table class="cmd-table">
+      <tr><td>/gsd:add-todo [desc]</td><td>Captura ideia para depois</td></tr>
+      <tr><td>/gsd:check-todos</td><td>Lista todos pendentes</td></tr>
+      <tr><td>/gsd:note "texto"</td><td>Captura de ideia zero-fricção — append, list ou promove para todo</td></tr>
+      <tr><td>/gsd:add-backlog "desc"</td><td>Adiciona item ao backlog (fora da sequência ativa, numeração 999.x)</td></tr>
+      <tr><td>/gsd:review-backlog</td><td>Revisa e promove itens ou remove obsoletos</td></tr>
+      <tr><td>/gsd:plant-seed "ideia"</td><td>Captura ideia futura com condição de disparo — aparece no milestone certo</td></tr>
+      <tr><td>/gsd:thread [nome]</td><td>Thread de contexto persistente para trabalho multi-sessão</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Qualidade & Debug</div>
+    <table class="cmd-table">
+      <tr><td>/gsd:review</td><td>Peer review cross-AI da fase ou branch atual</td></tr>
+      <tr><td>/gsd:ui-phase N</td><td>Gera UI-SPEC.md — design contract para fases frontend</td></tr>
+      <tr><td>/gsd:ui-review N</td><td>Auditoria visual retroativa (6 pilares) do código frontend</td></tr>
+      <tr><td>/gsd:pr-branch</td><td>Branch limpa para PR filtrando commits do .planning/</td></tr>
+      <tr><td>/gsd:audit-uat</td><td>Encontra fases sem UAT (dívida de verificação)</td></tr>
+      <tr><td>/gsd:debug [desc]</td><td>Debug sistemático com estado persistente</td></tr>
+      <tr><td>/gsd:forensics [desc]</td><td>Post-mortem de workflows travados — diagnostica loops, artefatos, git</td></tr>
+      <tr><td>/gsd:profile-user</td><td>Gera perfil comportamental do dev para respostas personalizadas</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- ROW 3: WORKSTREAMS + CONFIG + PROFILES -->
+<div class="grid" style="grid-template-columns: 1fr 1fr 1.2fr; margin-bottom: 2px;">
+
+  <!-- WORKSTREAMS -->
+  <div class="card">
+    <div class="card-title">Workstreams & Workspaces</div>
+    <div class="section-label">Workstreams — Trabalho Paralelo</div>
+    <table class="cmd-table">
+      <tr><td>/gsd:workstreams list</td><td>Exibe todos os workstreams e status</td></tr>
+      <tr><td>/gsd:workstreams create N</td><td>Cria workstream com namespace próprio</td></tr>
+      <tr><td>/gsd:workstreams switch N</td><td>Alterna workstream ativo</td></tr>
+      <tr><td>/gsd:workstreams complete N</td><td>Finaliza e mescla workstream</td></tr>
+    </table>
+    <div class="section-label" style="margin-top: 12px;">Multi-Project Workspaces</div>
+    <table class="cmd-table">
+      <tr><td>/gsd:new-workspace</td><td>Cria workspace isolado com cópias do repo (worktrees ou clones)</td></tr>
+      <tr><td>/gsd:list-workspaces</td><td>Exibe todos os workspaces GSD e status</td></tr>
+      <tr><td>/gsd:remove-workspace</td><td>Remove workspace e limpa worktrees</td></tr>
+    </table>
+    <div class="tip" style="margin-top: 10px; font-size: 11px;">
+      <strong>Use workstreams</strong> para trabalhar em features paralelas dentro do mesmo milestone sem conflito de contexto.
+    </div>
+  </div>
+
+  <!-- CONFIGURAÇÕES -->
+  <div class="card">
+    <div class="card-title">Configuração — /gsd:settings</div>
+    <div class="section-label">Core</div>
+    <table class="config-table">
+      <tr><td>mode</td><td>yolo / interactive</td><td>yolo = auto-aprova tudo</td></tr>
+      <tr><td>granularity</td><td>coarse / standard / fine</td><td>Quão finas são as fatias de fase</td></tr>
+    </table>
+    <div class="section-label" style="margin-top: 10px;">Workflow Agents</div>
+    <table class="config-table">
+      <tr><td>research</td><td>true</td><td>Pesquisa domínio antes de planejar fase</td></tr>
+      <tr><td>plan_check</td><td>true</td><td>Verifica planos antes de executar</td></tr>
+      <tr><td>verifier</td><td>true</td><td>Confirma entregáveis após execução</td></tr>
+      <tr><td>auto_advance</td><td>false</td><td>Encadeia discuss→plan→execute sem parar</td></tr>
+      <tr><td>discuss_mode</td><td>discuss</td><td><em>discuss</em> = entrevista · <em>assumptions</em> = analisa código</td></tr>
+      <tr><td>skip_discuss</td><td>false</td><td>Pula discuss-phase em modo autônomo</td></tr>
+      <tr><td>text_mode</td><td>false</td><td>Sem TUI — para sessões remotas</td></tr>
+    </table>
+    <div class="section-label" style="margin-top: 10px;">Git Branching</div>
+    <table class="config-table">
+      <tr><td>branching_strategy</td><td>none</td><td><em>none</em> / <em>phase</em> / <em>milestone</em></td></tr>
+    </table>
+    <div class="section-label" style="margin-top: 10px;">Override por Invocação</div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); line-height: 2;">
+      <span style="color: var(--accent)">/gsd:plan-phase --skip-research</span><br>
+      <span style="color: var(--accent)">/gsd:plan-phase --skip-verify</span><br>
+      <span style="color: var(--accent)">/gsd:discuss-phase N --auto</span><br>
+      <span style="color: var(--accent)">/gsd:discuss-phase N --batch</span> <span style="color: var(--muted)">→ responde em grupo</span><br>
+      <span style="color: var(--accent)">/gsd:new-project --auto</span><br>
+      <span style="color: var(--accent)">/gsd:set-profile budget</span>
+    </div>
+  </div>
+
+  <!-- MODEL PROFILES -->
+  <div class="card card-accent-red">
+    <div class="card-title red">◆ Model Profiles</div>
+    <table class="profile-table">
+      <tr>
+        <th>Profile</th>
+        <th>Planning</th>
+        <th>Execution</th>
+        <th>Verification</th>
+      </tr>
+      <tr>
+        <td>quality</td>
+        <td class="opus">Opus</td>
+        <td class="opus">Opus</td>
+        <td class="sonnet">Sonnet</td>
+      </tr>
+      <tr class="recommended">
+        <td>balanced <span style="color:var(--accent); font-size:9px">★ padrão</span></td>
+        <td class="opus">Opus</td>
+        <td class="sonnet">Sonnet</td>
+        <td class="sonnet">Sonnet</td>
+      </tr>
+      <tr>
+        <td>budget</td>
+        <td class="sonnet">Sonnet</td>
+        <td class="sonnet">Sonnet</td>
+        <td class="haiku">Haiku</td>
+      </tr>
+      <tr>
+        <td>inherit</td>
+        <td class="inherit">Inherit</td>
+        <td class="inherit">Inherit</td>
+        <td class="inherit">Inherit</td>
+      </tr>
+    </table>
+    <div class="tip" style="margin-top: 10px; font-size: 11px;">
+      <strong>inherit</strong> — Para OpenRouter, modelos locais ou seguir seleção do runtime (ex: <code>/model</code> no OpenCode).
+    </div>
+
+    <div style="margin-top: 14px;">
+      <div class="section-label">Instalação por Runtime (non-interactive)</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; line-height: 2.2;">
+        <span style="color: var(--muted)">Claude Code:</span> <span style="color: var(--accent)">npx gsd-cc --claude --global</span><br>
+        <span style="color: var(--muted)">Gemini CLI: &nbsp;</span> <span style="color: var(--accent)">npx gsd-cc --gemini --global</span><br>
+        <span style="color: var(--muted)">Copilot:    &nbsp;&nbsp;&nbsp;</span> <span style="color: var(--accent)">npx gsd-cc --copilot --global</span><br>
+        <span style="color: var(--muted)">OpenCode:   &nbsp;&nbsp;</span> <span style="color: var(--accent)">npx gsd-cc --opencode --global</span><br>
+        <span style="color: var(--muted)">Codex:      &nbsp;&nbsp;&nbsp;</span> <span style="color: var(--accent)">npx gsd-cc --codex --global</span><br>
+        <span style="color: var(--muted)">Todos:      &nbsp;&nbsp;&nbsp;</span> <span style="color: var(--accent)">npx gsd-cc --all --global</span>
+      </div>
+    </div>
+
+    <div class="warn" style="margin-top: 10px; font-size: 11px;">
+      <strong>Permissions (alternativa ao --dangerously-skip):</strong> adicione <code>Bash(git commit:*)</code>, <code>Bash(grep:*)</code> etc. no <code>.claude/settings.json</code>
+    </div>
+  </div>
+
+</div>
+
+<!-- ROW 4: WAVE EXECUTION + COMO FUNCIONA -->
+<div class="grid grid-2" style="margin-bottom: 2px;">
+
+  <div class="card card-accent-teal">
+    <div class="card-title teal">◆ Wave Execution — Como o Paralelismo Funciona</div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.8; background: var(--code-bg); border: 1px solid var(--border); padding: 14px; margin-bottom: 12px;">
+<span style="color: var(--accent2)">WAVE 1 (paralelo)          WAVE 2 (paralelo)     WAVE 3</span><br>
+<span style="color: var(--text)">┌─────────┐ ┌─────────┐    ┌─────────┐ ┌──────┐   ┌──────────┐</span><br>
+<span style="color: var(--text)">│ Plan 01 │ │ Plan 02 │ →  │ Plan 03 │ │ P 04 │ → │ Plan 05  │</span><br>
+<span style="color: var(--text)">│ User    │ │ Product │    │ Orders  │ │ Cart │   │ Checkout │</span><br>
+<span style="color: var(--text)">│ Model   │ │ Model   │    │ API     │ │ API  │   │ UI       │</span><br>
+<span style="color: var(--text)">└─────────┘ └─────────┘    └─────────┘ └──────┘   └──────────┘</span><br>
+<span style="color: var(--muted)">     │           │               ↑          ↑           ↑</span><br>
+<span style="color: var(--muted)">     └───────────┴───────────────┴──────────┘           │</span><br>
+<span style="color: var(--muted)">         depende P01      depende P02       depende P03+04</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+      <div style="background: var(--surface2); border: 1px solid var(--border); padding: 10px;">
+        <div style="font-size: 10px; font-weight: 700; color: var(--accent2); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">Cada plano tem</div>
+        <div style="font-size: 11px; color: var(--muted); line-height: 1.8;">
+          ✦ 200k tokens de contexto fresco<br>
+          ✦ XML estruturado com <code>verify</code> e <code>done</code><br>
+          ✦ Commit atômico ao terminar<br>
+          ✦ Sem acúmulo de garbage de sessão
+        </div>
+      </div>
+      <div style="background: var(--surface2); border: 1px solid var(--border); padding: 10px;">
+        <div style="font-size: 10px; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">Seu contexto fica</div>
+        <div style="font-size: 11px; color: var(--muted); line-height: 1.8;">
+          ✦ 30–40% usado durante execução<br>
+          ✦ O trabalho pesado vai para subagentes<br>
+          ✦ Sessão rápida e responsiva<br>
+          ✦ Você pode pausar e retomar
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Dicas de Uso Avançado</div>
+
+    <div class="section-label">Modos de Discuss</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px;">
+      <div style="background: var(--surface2); border: 1px solid var(--border); padding: 8px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent2); margin-bottom: 4px;">discuss (padrão)</div>
+        <div style="font-size: 11px; color: var(--muted);">Claude te entrevista. Você toma decisões explícitas sobre cada área ambígua da fase.</div>
+      </div>
+      <div style="background: var(--surface2); border: 1px solid var(--border); padding: 8px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent4); margin-bottom: 4px;">assumptions</div>
+        <div style="font-size: 11px; color: var(--muted);">Claude analisa o código, mostra o que faria e por quê. Você corrige só o que está errado.</div>
+      </div>
+    </div>
+
+    <div class="section-label">Seeds — Ideias Futuras com Gatilho</div>
+    <div style="font-size: 11px; color: var(--muted); margin-bottom: 12px; line-height: 1.6;">
+      Use <code>/gsd:plant-seed</code> para capturar ideias com condição de disparo. Ex: "adicionar dark mode quando tiver design system estável". O sistema as apresenta no milestone correto — sem poluir o backlog atual.
+    </div>
+
+    <div class="section-label">Context Rot — O Problema que GSD Resolve</div>
+    <div style="font-size: 11px; color: var(--muted); line-height: 1.6; margin-bottom: 12px;">
+      À medida que Claude enche o contexto, a qualidade degrada. GSD força contexto fresco por plano via subagentes, mantendo <strong style="color: var(--text);">qualidade constante do início ao fim</strong> da fase.
+    </div>
+
+    <div class="section-label">Commits Atômicos</div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); line-height: 2; background: var(--code-bg); border: 1px solid var(--border); padding: 10px;">
+      <span style="color: var(--accent)">abc123f</span> feat(08-02): add email confirmation flow<br>
+      <span style="color: var(--accent)">def456g</span> feat(08-02): implement password hashing<br>
+      <span style="color: var(--accent)">hij789k</span> feat(08-02): create registration endpoint<br>
+      <span style="color: var(--muted)">→ git bisect funciona por tarefa · cada commit é reversível</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">
+    GSD — get-shit-done · github.com/gsd-build/get-shit-done · MIT License<br>
+    <span style="color: var(--border2);">Trusted by engineers at Amazon, Google, Shopify, Webflow</span>
+  </div>
+  <div class="footer-right">
+    <span style="color: var(--accent)">npx get-shit-done-cc@latest</span><br>
+    /gsd:help · /gsd:update · discord.gg/gsd
+  </div>
+</div>
+
+</body>
+</html>
