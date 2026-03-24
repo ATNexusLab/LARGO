@@ -9,3 +9,15 @@
 ## Revisão/Post-Mortem
 
 - [Notas sobre desafios ou débitos técnicos gerados]
+
+# Tarefa: [DOCS] Atualizar ADR e .env.example para seleção de modelos Gemini
+
+- [ ] Etapa 1: Planejamento (Consultar docs/architecture/adr-gemini-model-selection.md e README.md)
+- [ ] Etapa 2: Implementação (Criar ADR e atualizar .env.example com GEMINI_MODEL_IMAGE e GEMINI_MODEL_TEXT)
+- [ ] Etapa 3: Validação Docker (`docker compose up --build` para garantir integridade)
+- [ ] Etapa 4: Testes (documentação e variáveis carregadas em ambiente de dev)
+- [ ] Etapa 5: Atualização de docs e `.env.example` (docs/architecture/adr-gemini-model-selection.md)
+
+## Revisão/Post-Mortem
+
+- [Notas sobre desafios ou débitos técnicos gerados]
