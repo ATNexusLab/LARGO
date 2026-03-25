@@ -1,0 +1,24 @@
+AZONIX — Trecho de licença e nota de validação
+
+Arquivo de origem: docs/design/assets/fonts/Azonix.otf
+Data: 2026-03-25
+
+Trecho extraído dos metadados (resumo):
+
+"ECopyright 2018 Adobe Systems Incorporated. All rights reserved.
+AzonixRegular1.010;AzonixRegularVersion 1.010;Fontself Maker 3.0.1
+AzonixRegular
+Please refer to the Copyright section for the font trademark attribution notices.
+mixofx.com
+Mixo (mixofx)
+behance.net/mixofx
+Free Font
+Azonix Modern Font"
+
+Resumo da validação
+- Metadados mencionam o autor (mixofx) e contêm a expressão "Free Font", mas há referência ambígua a "Adobe Systems Incorporated".
+- Para confirmação completa, consultar a fonte original (behance/mixofx). No entanto, conforme instrução do usuário, o arquivo foi mantido no repositório e esta nota foi adicionada para registro.
+
+Recomendações
+- Se for necessário suporte legal formal, buscar a página do autor e adicionar o LICENSE apropriado na mesma pasta.
+
