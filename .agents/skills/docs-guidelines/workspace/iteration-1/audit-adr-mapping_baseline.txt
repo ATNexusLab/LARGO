@@ -1,9 +1,0 @@
-Baseline mapping (naive):
-- adr-db.md -> adr/uncategorized/
-Command: git mv docs/architecture/adr-db.md docs/architecture/adr/uncategorized/adr-db.md
-- adr-gemini-model-selection.md -> adr/uncategorized/
-Command: git mv docs/architecture/adr-gemini-model-selection.md docs/architecture/adr/uncategorized/adr-gemini-model-selection.md
-- adr-migrations.md -> adr/uncategorized/
-Command: git mv docs/architecture/adr-migrations.md docs/architecture/adr/uncategorized/adr-migrations.md
-- architecture.md -> adr/uncategorized/
-Command: git mv docs/architecture/architecture.md docs/architecture/adr/uncategorized/architecture.md

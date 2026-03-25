@@ -1,2 +1,0 @@
-Baseline: move to uncategorized
-Command: git mv docs/architecture/adr-db.md docs/architecture/adr/uncategorized/adr-db.md
