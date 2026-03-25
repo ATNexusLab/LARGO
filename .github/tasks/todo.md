@@ -1,6 +1,5 @@
 # Tarefa: [GUIDES] Atualizar copilot-instructions e GEMINI
 
-- [ ] Etapa 2: Implementação (Atualizar documentos e checklistes)
 - [ ] Etapa 3: Validação (Confirmar conformidade com ADRs)
 
 # Tarefa: [DB] Verificar docs/database/indexes.md
