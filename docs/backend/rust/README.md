@@ -1,0 +1,3 @@
+# Rust
+
+Documentação Rust.
