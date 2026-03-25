@@ -8,3 +8,4 @@
 - 2026-03-25 — [AGENTS] Triagem de .agents/skills/ — Etapa 2 & 3 (Implementação e Validação): Não aplicáveis (nenhuma ocorrência); tarefa concluída.
 - 2026-03-25 — [GUIDES] Atualizar copilot-instructions e GEMINI — Etapa 1 (Planejamento): Localizadas ocorrências em vários arquivos; subtarefas criadas no backlog de sessão.
 - 2026-03-25 — [DB] Verificar docs/database/indexes.md — Etapa 1 (Planejamento): Identificados índices obrigatórios em docs/database/indexes.md; subtarefas criadas.
+- 2026-03-25 — [SCRIPTS] Remover prints/debug em scripts — Etapa 1 (Planejamento): Listadas ocorrências de print/console.log; subtarefas criadas.

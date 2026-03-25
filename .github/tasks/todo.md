@@ -10,7 +10,6 @@
 
 # Tarefa: [SCRIPTS] Remover prints/debug em scripts
 
-- [ ] Etapa 1: Planejamento (Listar scripts com print/console.log)
 - [ ] Etapa 2: Implementação (Substituir por logging/flags)
 - [ ] Etapa 3: Validação (Executar scripts e verificar saída)
 
