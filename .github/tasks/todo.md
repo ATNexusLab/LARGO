@@ -1,8 +1,3 @@
-# Tarefa: [AGENTS] Triagem de .agents/skills/
-
-- [ ] Etapa 2: Implementação (Converter em tarefas no backlog)
-- [ ] Etapa 3: Validação (Executar scripts de skills se aplicável)
-
 # Tarefa: [GUIDES] Atualizar copilot-instructions e GEMINI
 
 - [ ] Etapa 1: Planejamento (Identificar referências obsoletas)
