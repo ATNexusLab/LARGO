@@ -1,0 +1,36 @@
+# Tarefa: [DOCS] Triagem de docs/
+
+- [ ] Etapa 1: Planejamento (Consultar docs e ADRs relevantes)
+- [ ] Etapa 2: Implementação (Extrair TODOs/FIXMEs e criar tarefas)
+- [ ] Etapa 3: Validação (Rever alterações de documentação)
+- [ ] Etapa 4: Atualização de .github/tasks/todo.md
+
+# Tarefa: [AGENTS] Triagem de .agents/skills/
+
+- [ ] Etapa 1: Planejamento (Listar arquivos com TODO/FIXME)
+- [ ] Etapa 2: Implementação (Converter em tarefas no backlog)
+- [ ] Etapa 3: Validação (Executar scripts de skills se aplicável)
+
+# Tarefa: [GUIDES] Atualizar copilot-instructions e GEMINI
+
+- [ ] Etapa 1: Planejamento (Identificar referências obsoletas)
+- [ ] Etapa 2: Implementação (Atualizar documentos e checklistes)
+- [ ] Etapa 3: Validação (Confirmar conformidade com ADRs)
+
+# Tarefa: [DB] Verificar docs/database/indexes.md
+
+- [ ] Etapa 1: Planejamento (Comparar queries com índices declarados)
+- [ ] Etapa 2: Implementação (Criar tarefas para índices faltantes)
+- [ ] Etapa 3: Validação (Atualizar documentação e exemplos)
+
+# Tarefa: [SCRIPTS] Remover prints/debug em scripts
+
+- [ ] Etapa 1: Planejamento (Listar scripts com print/console.log)
+- [ ] Etapa 2: Implementação (Substituir por logging/flags)
+- [ ] Etapa 3: Validação (Executar scripts e verificar saída)
+
+# Tarefa: [CLEANUP] Consolidar tokens/ativos gerados
+
+- [ ] Etapa 1: Planejamento (Listar arquivos em docs/design/generated)
+- [ ] Etapa 2: Implementação (Remover artefatos redundantes)
+- [ ] Etapa 3: Validação (Verificar referências nos docs)
