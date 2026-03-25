@@ -6,7 +6,7 @@ Sumário
 
 - [Backend (gateway)](./backend/index.md)
 - [AI Worker (ai)](./ai/index.md)
-- [Web (frontend)](./web/index.md)
+- [Frontend (web + ui)](./frontend/README.md)
 - [Database](./database/index.md)
 - [Arquitetura e ADRs](./architecture/)
 - [Skills](./skills/index.md)
@@ -16,14 +16,14 @@ Convenções
 
 - Idioma: Português técnico (pt-BR).
 - Formatos: Markdown para documentação; TOON para prompts enviados ao Gemini (ver `docs/ai/prompts.md`).
-- Atualizações: prefira PRs pequenos e revisáveis. Atualize este índice sempre que mover/criar documentos.
+- Atualizações: prefira commits pequenos e atômicos; atualize este índice sempre que mover/criar documentos.
 - Skills: registrar novas skills em `skills-lock.json` e documentar em `docs/skills/`.
 
 Como contribuir
 
 1. Atualize ou crie o arquivo adequado em `docs/<área>/`.
 2. Atualize este índice (`docs/index.md`) apontando para o novo artefato.
-3. Abra PR pequeno descrevendo apenas mudanças relacionadas à documentação.
+3. Faça commits locais atômicos e push quando pronto.
 
 Próximos passos
 
