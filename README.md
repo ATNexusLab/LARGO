@@ -48,7 +48,7 @@ LARGO runs as four isolated services orchestrated by Docker Compose.
                ┌───────▼────────┐
                │   Google AI    │
                │  Vision API    │
-               │  Gemini 2.5    │
+               │  Gemini 3.1    │
                └────────────────┘
 ```
 
@@ -88,7 +88,7 @@ Open `http://localhost:5173`.
 | Variable | Description |
 |---|---|
 | `GOOGLE_CLOUD_API_KEY` | Google Cloud Vision API key |
-| `GEMINI_API_KEY` | Google AI Studio key (Gemini 2.5 Pro) |
+| `GEMINI_API_KEY` | Google AI Studio key (Gemini 3.1 Flash) |
 | `JWT_SECRET` | Secret for signing JWT tokens |
 | `MONGO_URI` | MongoDB connection string |
 

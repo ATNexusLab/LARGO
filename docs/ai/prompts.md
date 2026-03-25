@@ -8,6 +8,8 @@ Visão geral
 ----------
 TOON (Token-Oriented Object Notation) é o formato compacto recomendado para prompts: reduz tokens e mantém estrutura. Sempre encoder o objeto com a lib `toon_format.encode()` antes de enviar ao Gemini.
 
+Modelos gerativos: Gemini 3.1 Flash (imagem) / gemini-3.1-flash-lite (texto).
+
 Regras rápidas
 -------------
 - Usar `toon.encode(obj)` para arrays de objetos.

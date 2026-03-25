@@ -16,6 +16,7 @@ Convenções
 
 - Idioma: Português técnico (pt-BR).
 - Formatos: Markdown para documentação; TOON para prompts enviados ao Gemini (ver `docs/ai/prompts.md`).
+- Modelos Gemini: gemini-3.1-flash (imagem) e gemini-3.1-flash-lite (texto).
 - Atualizações: prefira commits pequenos e atômicos; atualize este índice sempre que mover/criar documentos.
 - Skills: registrar novas skills em `skills-lock.json` e documentar em `docs/skills/`.
 

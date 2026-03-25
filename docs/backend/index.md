@@ -7,6 +7,7 @@ Conteúdo sugerido:
 - Rotas expostas e contratos (ex: `/api/expenses`, `/api/tasks`)
 - Como rodar localmente (cargo run / Docker)
 - Patterns: Adapters (MongoAdapter, GeminiAdapter), Error handling (thiserror/anyhow)
+- Nota: GeminiAdapter deve usar gemini-3.1-flash para entradas multimodais quando aplicável.
 - Testes: como rodar `cargo test` e como escrever testes de integração com Axum
 
 Referências:
