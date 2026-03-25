@@ -1,10 +1,3 @@
-# Tarefa: [DOCS] Triagem de docs/
-
-- [ ] Etapa 1: Planejamento (Consultar docs e ADRs relevantes)
-- [ ] Etapa 2: Implementação (Extrair TODOs/FIXMEs e criar tarefas)
-- [ ] Etapa 3: Validação (Rever alterações de documentação)
-- [ ] Etapa 4: Atualização de .github/tasks/todo.md
-
 # Tarefa: [AGENTS] Triagem de .agents/skills/
 
 - [ ] Etapa 1: Planejamento (Listar arquivos com TODO/FIXME)

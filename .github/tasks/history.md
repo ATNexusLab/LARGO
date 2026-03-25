@@ -1,3 +1,6 @@
 # Histórico de tarefas concluídas
 
 - 2026-03-23 — [DOCS] ADR: "Escolha do MongoDB para persistência" criado em `docs/architecture/adr-db.md`.
+- 2026-03-25 — [DOCS] Triagem de docs/ — Etapa 1 (Planejamento): Consultados docs/ e ADRs; nenhum TODO/FIXME encontrado.
+- 2026-03-25 — [DOCS] Triagem de docs/ — Etapa 2 (Implementação): Extração de TODO/FIXME concluída (nenhuma ocorrência).
+- 2026-03-25 — [DOCS] Triagem de docs/ — Etapa 3 & 4 (Validação e Atualização): Validado e backlog atualizado.
