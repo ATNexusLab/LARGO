@@ -1,11 +1,7 @@
-version: "3.8"
-
 services:
   mongo:
     image: mongo:6.0.8
     container_name: largo_mongo
-    env_file:
-      - .env
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
@@ -20,18 +16,6 @@ services:
       retries: 5
       start_period: 10s
     restart: unless-stopped
-
-  mongo-init:
-    image: python:3.11-slim
-    container_name: largo_mongo_init
-    env_file:
-      - .env
-    volumes:
-      - ./scripts:/scripts:ro
-    depends_on:
-      - mongo
-    entrypoint: ["sh", "-c", "pip install -r /scripts/requirements.txt --no-cache-dir && python /scripts/db/init_indexes.py"]
-    restart: "no"
 
 volumes:
   mongo_data:

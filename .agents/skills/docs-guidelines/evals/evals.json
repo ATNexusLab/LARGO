@@ -1,0 +1,17 @@
+[
+  {
+    "id": "audit-adr-mapping",
+    "input": "Auditar docs/architecture: arquivos ['adr-db.md','adr-gemini-model-selection.md','adr-migrations.md','architecture.md']. Sugerir destino, nomes padronizados e comandos git mv.",
+    "expected": "Sugerir 'docs/architecture/adr/database/01-adr-db.md', 'docs/architecture/adr/ai/02-adr-gemini-model-selection.md', 'docs/architecture/adr/database/03-adr-migrations.md' e manter 'architecture.md' como overview; indicar comandos git mv correspondentes."
+  },
+  {
+    "id": "generate-ai-readme",
+    "input": "Gerar README para docs/ai com sumário e exemplos de uso do formato TOON.",
+    "expected": "README com seção 'TOON prompts', exemplos de encode() e link para docs/ai/prompts.md; sugestão de índice."
+  },
+  {
+    "id": "rename-adr",
+    "input": "Sugerir nome padronizado para 'adr-db.md' e comando git mv.",
+    "expected": "Nome sugerido: '01-adr-db.md' e comando: git mv docs/architecture/adr-db.md docs/architecture/adr/database/01-adr-db.md"
+  }
+]

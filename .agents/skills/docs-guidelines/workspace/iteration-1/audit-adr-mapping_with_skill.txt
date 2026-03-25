@@ -1,0 +1,10 @@
+With-skill mapping (heuristic):
+- adr-db.md -> adr/database/01-adr-db.md
+Command: git mv docs/architecture/adr-db.md docs/architecture/adr/database/01-adr-db.md
+- adr-gemini-model-selection.md -> adr/ai/02-adr-gemini-model-selection.md
+Command: git mv docs/architecture/adr-gemini-model-selection.md docs/architecture/adr/ai/02-adr-gemini-model-selection.md
+- adr-migrations.md -> adr/database/03-adr-migrations.md
+Command: git mv docs/architecture/adr-migrations.md docs/architecture/adr/database/03-adr-migrations.md
+- architecture.md -> adr/architecture/04-architecture.md
+Command: git mv docs/architecture/architecture.md docs/architecture/adr/architecture/04-architecture.md
+Keep 'architecture.md' as overview.

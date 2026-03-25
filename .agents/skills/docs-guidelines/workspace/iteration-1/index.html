@@ -1,0 +1,51 @@
+<!doctype html><html><head><meta charset='utf-8'><title>docs-guidelines evals</title></head><body>
+<h1>docs-guidelines evals</h1>
+<section><h2>audit-adr-mapping</h2>
+<h3>Expected</h3><pre>Sugerir 'docs/architecture/adr/database/01-adr-db.md', 'docs/architecture/adr/ai/02-adr-gemini-model-selection.md', 'docs/architecture/adr/database/03-adr-migrations.md' e manter 'architecture.md' como overview; indicar comandos git mv correspondentes.</pre>
+<h3>Baseline</h3><pre>Baseline mapping (naive):
+- adr-db.md -> adr/uncategorized/
+Command: git mv docs/architecture/adr-db.md docs/architecture/adr/uncategorized/adr-db.md
+- adr-gemini-model-selection.md -> adr/uncategorized/
+Command: git mv docs/architecture/adr-gemini-model-selection.md docs/architecture/adr/uncategorized/adr-gemini-model-selection.md
+- adr-migrations.md -> adr/uncategorized/
+Command: git mv docs/architecture/adr-migrations.md docs/architecture/adr/uncategorized/adr-migrations.md
+- architecture.md -> adr/uncategorized/
+Command: git mv docs/architecture/architecture.md docs/architecture/adr/uncategorized/architecture.md</pre>
+<h3>With Skill</h3><pre>With-skill mapping (heuristic):
+- adr-db.md -> adr/database/01-adr-db.md
+Command: git mv docs/architecture/adr-db.md docs/architecture/adr/database/01-adr-db.md
+- adr-gemini-model-selection.md -> adr/ai/02-adr-gemini-model-selection.md
+Command: git mv docs/architecture/adr-gemini-model-selection.md docs/architecture/adr/ai/02-adr-gemini-model-selection.md
+- adr-migrations.md -> adr/database/03-adr-migrations.md
+Command: git mv docs/architecture/adr-migrations.md docs/architecture/adr/database/03-adr-migrations.md
+- architecture.md -> adr/architecture/04-architecture.md
+Command: git mv docs/architecture/architecture.md docs/architecture/adr/architecture/04-architecture.md
+Keep 'architecture.md' as overview.</pre>
+</section>
+<section><h2>generate-ai-readme</h2>
+<h3>Expected</h3><pre>README com seção 'TOON prompts', exemplos de encode() e link para docs/ai/prompts.md; sugestão de índice.</pre>
+<h3>Baseline</h3><pre>Baseline README draft for docs/ai:
+## AI Worker (overview)
+
+Sections:
+- Overview
+- TOON prompts (placeholder)
+</pre>
+<h3>With Skill</h3><pre>With-skill README draft for docs/ai:
+## TOON prompts
+Example:
+```python
+from toon_format import encode
+ex = encode([{"id":1,"descricao":"Mercado","valor":150.0}])
+print(ex)
+```
+</pre>
+</section>
+<section><h2>rename-adr</h2>
+<h3>Expected</h3><pre>Nome sugerido: '01-adr-db.md' e comando: git mv docs/architecture/adr-db.md docs/architecture/adr/database/01-adr-db.md</pre>
+<h3>Baseline</h3><pre>Baseline: move to uncategorized
+Command: git mv docs/architecture/adr-db.md docs/architecture/adr/uncategorized/adr-db.md</pre>
+<h3>With Skill</h3><pre>With-skill suggestion: 01-adr-db.md
+Command: git mv docs/architecture/adr-db.md docs/architecture/adr/database/01-adr-db.md</pre>
+</section>
+</body></html>

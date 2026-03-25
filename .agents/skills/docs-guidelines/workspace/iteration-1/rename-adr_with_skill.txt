@@ -1,0 +1,2 @@
+With-skill suggestion: 01-adr-db.md
+Command: git mv docs/architecture/adr-db.md docs/architecture/adr/database/01-adr-db.md
