@@ -1,2 +1,4 @@
 
-/.env__pycache__
+/.env
+
+/.agents/skills/ui-ux-pro-max/scripts/__pycache__
