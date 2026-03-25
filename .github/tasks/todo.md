@@ -1,6 +1,5 @@
 # Tarefa: [GUIDES] Atualizar copilot-instructions e GEMINI
 
-- [ ] Etapa 1: Planejamento (Identificar referências obsoletas)
 - [ ] Etapa 2: Implementação (Atualizar documentos e checklistes)
 - [ ] Etapa 3: Validação (Confirmar conformidade com ADRs)
 
