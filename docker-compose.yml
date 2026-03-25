@@ -8,7 +8,10 @@ services:
       - MONGO_INITDB_DATABASE=${MONGO_DB_NAME}
     volumes:
       - mongo_data:/data/db
-    # Não expor Mongo diretamente ao host por padrão (seguir política de segurança local)
+    # Porta exposta ao host para desenvolvimento local (gateway/ai-worker rodam fora do Docker)
+    ports:
+      - "27017:27017"
+    # Não expor Mongo diretamente ao host em produção — remover ports: e usar apenas a rede interna
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
