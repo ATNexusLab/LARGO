@@ -85,8 +85,8 @@ Toda comunicação entre serviços ocorre **dentro da rede interna do Docker**. 
 ### AI Worker — Python/FastAPI
 
 - **Framework:** FastAPI com Pydantic v2 para validação.
-- **OCR:** Google Cloud Vision API (`google-cloud-vision`).
-- **Processamento:** Gemini 2.5 Pro (`google-generativeai`) para transformar OCR bruto em JSON estruturado de nota fiscal.
+- **OCR:** GGemini 3.1 Flash-lite (`google-generativeai`).
+- **Processamento:** Gemini 3.1 Flash (`google-generativeai`) para transformar OCR bruto em JSON estruturado de nota fiscal.
 - **Formato de prompt:** **TOON obrigatório** para todos os payloads enviados ao Gemini. Usar a lib `toon_format` (implementação Python oficial). Nunca enviar JSON puro em prompts — sempre converter com `toon.encode()` antes.
 - **Fluxo obrigatório para NF-e:**
   1. Vision API → texto bruto da imagem
