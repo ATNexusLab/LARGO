@@ -1,6 +1,5 @@
 # Tarefa: [AGENTS] Triagem de .agents/skills/
 
-- [ ] Etapa 1: Planejamento (Listar arquivos com TODO/FIXME)
 - [ ] Etapa 2: Implementação (Converter em tarefas no backlog)
 - [ ] Etapa 3: Validação (Executar scripts de skills se aplicável)
 
