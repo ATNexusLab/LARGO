@@ -15,6 +15,5 @@
 
 # Tarefa: [CLEANUP] Consolidar tokens/ativos gerados
 
-- [ ] Etapa 1: Planejamento (Listar arquivos em docs/design/generated)
 - [ ] Etapa 2: Implementação (Remover artefatos redundantes)
 - [ ] Etapa 3: Validação (Verificar referências nos docs)
