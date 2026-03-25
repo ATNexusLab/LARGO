@@ -10,12 +10,18 @@ services:
       - mongo_data:/data/db
     # Não expor Mongo diretamente ao host por padrão (seguir política de segurança local)
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 10s
+    networks:
+      - largo_net
     restart: unless-stopped
 
 volumes:
   mongo_data:
+
+networks:
+  largo_net:
+    driver: bridge

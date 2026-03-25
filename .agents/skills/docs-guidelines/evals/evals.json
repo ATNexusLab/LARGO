@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "evals": [
+    {
+      "id": "docs-audit-basic",
+      "description": "Verifica se a skill gera um checklist de reorganização para docs/ com ADRs e índices identificados.",
+      "input": {
+        "path": "docs/",
+        "context": "projeto com ADRs em docs/architecture/adr/ e índices em docs/index.md"
+      },
+      "expected_outputs": [
+        "checklist com itens acionáveis",
+        "mapeamento de arquivos para destino sugerido",
+        "referência a docs/architecture/adr/"
+      ]
+    },
+    {
+      "id": "docs-audit-toon",
+      "description": "Verifica se a skill identifica prompts TOON ausentes ou schemas não documentados.",
+      "input": {
+        "path": "docs/ai/",
+        "context": "AI Worker usando Gemini — verificar documentação de prompts TOON"
+      },
+      "expected_outputs": [
+        "lista de prompts sem schema TOON documentado",
+        "recomendação de estrutura para docs/ai/prompts/"
+      ]
+    }
+  ]
+}

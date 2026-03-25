@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "docs-guidelines": {
+      "source": "local",
+      "sourceType": "local",
+      "computedHash": "935800947a2dd31ee9b5c579821700db72494a3ff985c21bbf5782db71925a09"
+    },
     "multi-stage-dockerfile": {
       "source": "github/awesome-copilot",
       "sourceType": "github",

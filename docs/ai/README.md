@@ -12,6 +12,6 @@ Conteúdo sugerido:
 - Conexão com o gateway (endpoints expostos)
 
 Referências:
-- `docs/architecture/architecture.md`
-- `docs/ai/prompts.md` (em breve)
+- `docs/architecture/adr/architecture/04-architecture.md`
+- `docs/ai/prompts.md`
 

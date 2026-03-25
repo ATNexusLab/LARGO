@@ -27,7 +27,7 @@ Exemplo (documento):
   "meta": {"ocr_confidence": 0.93}
 }
 
-JSON Schema (validator) — para uso no `scripts/db/init_indexes.py`:
+JSON Schema (validator) — aplicado via script de inicialização (ver `docs/database/setup.md`):
 
 expenses_validator = {
   "$jsonSchema": {

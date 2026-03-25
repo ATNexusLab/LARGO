@@ -1,3 +1,9 @@
+/*
+ * ui-styles.css — Estilos utilitários e classes de componente para o frontend LARGO.
+ * Complementa tokens-generated.css (que define apenas as CSS custom properties).
+ * Este arquivo aplica os tokens em regras de estilo concretas (body, .card, .progress, etc.).
+ * Para atualizar os tokens (cores, espaçamento, radius), edite docs/design/tokens.json.
+ */
 :root {
   --color-bg: #09090b;
   --color-surface: #18181b;

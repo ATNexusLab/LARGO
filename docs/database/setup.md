@@ -11,20 +11,22 @@ Passos mínimos
 
    docker compose up -d mongo
 
-3) Aplicar validators e índices (duas opções):
+3) Aplicar validators e índices:
 
-   a) Usando container one-shot (recomendado):
-      docker compose run --rm mongo-init
+   NOTA: O serviço `mongo-init` (container one-shot) está **planejado** via ADR 03 (proposto, ainda não aceito).
+   Enquanto ADR 03 não for aceito e implementado, usar o script Python para setup manual (teste/depuração):
 
-   b) Rodando o script localmente (teste/depuração):
-      pip install -r scripts/requirements.txt
-      MONGO_URI="mongodb://admin:secret@localhost:27017/largo?authSource=admin" python scripts/db/init_indexes.py
+       pip install -r scripts/requirements.txt
+       MONGO_URI="mongodb://admin:secret@localhost:27017/largo?authSource=admin" python scripts/db/init_indexes.py
+
+   Quando ADR 03 for aceito e o binário Rust `db-init` estiver disponível, o comando será:
+       docker compose run --rm db-init
 
 Verificações
 ------------
 - Conferir coleções e índices:
-  docker compose exec mongo mongo --eval "db.getSiblingDB('largo').getCollectionNames()"
-  docker compose exec mongo mongo --eval "db.getSiblingDB('largo').expenses.getIndexes()"
+  docker compose exec mongo mongosh --eval "db.getSiblingDB('largo').getCollectionNames()"
+  docker compose exec mongo mongosh --eval "db.getSiblingDB('largo').expenses.getIndexes()"
 
 Backup e restauração
 --------------------

@@ -13,4 +13,4 @@ import Card from './react/Card';
 ```
 
 Observações
-- Usa `--color-surface` e box-shadow definidos em `docs/ui/styles.css`.
+- Usa `--color-surface` e box-shadow definidos em `docs/design/generated/ui-styles.css`.

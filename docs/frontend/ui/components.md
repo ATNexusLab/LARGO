@@ -4,19 +4,19 @@ Objetivo
 - Fornecer snippets e exemplos para componentes base usando tokens e Tailwind/shadcn/ui.
 
 Botões
-- Primary (filled): `class="bg-primary text-white rounded-md px-4 py-2 hover:bg-primary-600"`
-- Secondary (outline): `class="border border-neutral-300 text-neutral-900 rounded-md px-4 py-2 bg-transparent"`
-- Ghost: `class="text-primary bg-transparent px-3 py-1"`
+- Primary (filled): `class="bg-[var(--color-primary)] text-[var(--color-bg)] rounded-md px-4 py-2 hover:opacity-90"`
+- Secondary (outline): `class="border border-[var(--color-muted)] text-[var(--color-text)] rounded-md px-4 py-2 bg-transparent"`
+- Ghost: `class="text-[var(--color-primary)] bg-transparent px-3 py-1"`
 
 Exemplo React (Tailwind + shadcn)
-<Button className="bg-primary text-white rounded-md px-4 py-2">Salvar</Button>
+<Button className="bg-[var(--color-primary)] text-[var(--color-bg)] rounded-md px-4 py-2">Salvar</Button>
 
 Inputs
-- Estilo base: `class="w-full border border-neutral-300 rounded-md px-3 py-2 bg-white placeholder:text-neutral-400"`
-- Estados: focus (outline-primary), error (border-danger + helper text)
+- Estilo base: `class="w-full border border-[var(--color-muted)] rounded-md px-3 py-2 bg-[var(--color-surface)] text-[var(--color-text)] placeholder:text-[var(--color-muted)]"`
+- Estados: focus (outline `var(--color-primary)`), error (border `var(--color-danger)` + helper text)
 
 Card
-- Estrutura: `class="bg-white rounded-md shadow-md p-4"`
+- Estrutura: `class="bg-[var(--color-surface)] rounded-md shadow-md p-4"`
 - Use para agrupamento de informações e listas resumidas.
 
 Navbar / Header

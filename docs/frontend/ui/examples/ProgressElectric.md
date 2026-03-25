@@ -13,4 +13,4 @@ import ProgressElectric from './react/ProgressElectric';
 ```
 
 Observações
-- Estilos em `docs/ui/styles.css` (.progress, .progress-electric, .pulse).
+- Estilos em `docs/design/generated/ui-styles.css` (.progress, .progress-electric, .pulse).

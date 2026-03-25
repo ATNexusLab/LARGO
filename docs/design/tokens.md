@@ -19,7 +19,7 @@ Cores semânticas
 
 Tipografia
 - --font-sans: 'Azonix', 'Inter', system-ui
-- Observação: Azonix já está disponível em `docs/design/azonix` (fonte local). Preferir carregar localmente no frontend e garantir licenciamento.
+- Observação: Azonix está disponível em `docs/design/assets/fonts/Azonix.otf` (fonte local). Preferir carregar localmente no frontend e garantir licenciamento.
 
 Espaçamento (base: 4px)
 - spacing-1: 4px
@@ -108,4 +108,6 @@ module.exports = {
 
 Observações
 - Este arquivo é gerado a partir de `docs/design/tokens.json`. Para atualizar os tokens, edite `tokens.json` e solicite regeneração (ou automatize via script).
-- Arquivos gerados: `docs/ui/styles.css` (CSS variables e utilitários) e `docs/design/palette.md` (contexto e regras de aplicação).
+- Arquivos gerados: `docs/design/generated/ui-styles.css` (CSS variables e utilitários) e `docs/design/generated/tokens-generated.css` (apenas custom properties).
+- **Validação `ui-ux-pro-max` (2026-03-25):** Paleta Obsidian Black + Electric Volt + Steel Blue foi validada como **Dark Mode OLED** — padrão correto para um dashboard de finanças/produtividade orientado a dados. Contraste WCAG AAA para texto principal (`#fafafa` sobre `#09090b`).
+- **Tipografia:** `Azonix` é fonte display — usar apenas para headings e elementos de marca. Usar `Inter` para body text, labels e UI geral. Configurar Tailwind com `fontFamily.display: ['Azonix']` e `fontFamily.sans: ['Inter', 'system-ui']`.

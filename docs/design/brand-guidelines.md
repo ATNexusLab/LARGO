@@ -5,7 +5,7 @@ Essência da marca
 - Público: usuários de gestão financeira / tarefas.
 
 Logo
-- A criação do logotipo ficará por sua conta (conforme combinado). Quando o logo estiver pronto, salvar em `docs/design/assets/` com as variações: `logo-horizontal.svg`, `logo-vertical.svg`, `logo-mark.svg` e favicons.
+- Logo disponível em `docs/design/assets/logo.png`. Versões SVG planejadas: `logo-horizontal.svg`, `logo-vertical.svg`, `logo-mark.svg` e favicons no mesmo diretório.
 - Forneça versões em cor principal, negativo (branco) e mono.
 
 Uso de cores

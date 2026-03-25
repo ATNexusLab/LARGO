@@ -160,18 +160,22 @@ dados = encode([{"id": 1, "descricao": "Mercado", "valor": 150.0}])
 
 **Skills disponíveis no projeto:**
 
-| Skill                    | Quando usar                                                        |
-| ------------------------ | ------------------------------------------------------------------ |
-| `axum-patterns`          | Criar/modificar rotas, middlewares, extractors no Axum             |
-| `mongodb-patterns`       | Queries, agregações, índices, transações no MongoDB                |
-| `ai-worker-patterns`     | Fluxo OCR Vision API → Gemini → JSON estruturado                   |
-| `toon-prompts`           | Padrões de encoding TOON para prompts Gemini, schemas por entidade |
-| `docker-compose-setup`   | Criação e manutenção do docker-compose e Dockerfiles               |
-| `react-dashboard`        | Estrutura de páginas, rotas React, layouts do dashboard            |
-| `security-best-practices`| Checklist de segurança geral da aplicação                          |
-| `ui-ux-pro-max`          | Identidade visual, design system, tokens, padrões de UI            |
-| `rust-error-handling`    | Padrões de erro com thiserror/anyhow no Rust                       |
-| `skill-creator`          | Criar novas skills quando necessário                               |
+| Skill                    | Status       | Quando usar                                                        |
+| ------------------------ | ------------ | ------------------------------------------------------------------ |
+| `docs-guidelines`        | ✅ instalada | Reorganizar docs/, ADRs, índices, checklist de PR                  |
+| `multi-stage-dockerfile` | ✅ instalada | Criar Dockerfiles multi-stage otimizados                           |
+| `shadcn`                 | ✅ instalada | Adicionar/configurar componentes shadcn/ui                         |
+| `skill-creator`          | ✅ instalada | Criar novas skills quando necessário                               |
+| `ui-ux-pro-max`          | ✅ instalada | Identidade visual, design system, tokens, padrões de UI            |
+| `vercel-react-best-practices` | ✅ instalada | Padrões de performance React/Next.js                          |
+| `axum-patterns`          | 🔜 planejada | Criar/modificar rotas, middlewares, extractors no Axum             |
+| `mongodb-patterns`       | 🔜 planejada | Queries, agregações, índices, transações no MongoDB                |
+| `ai-worker-patterns`     | 🔜 planejada | Fluxo OCR Vision API → Gemini → JSON estruturado                   |
+| `toon-prompts`           | 🔜 planejada | Padrões de encoding TOON para prompts Gemini, schemas por entidade |
+| `docker-compose-setup`   | 🔜 planejada | Criação e manutenção do docker-compose e Dockerfiles               |
+| `react-dashboard`        | 🔜 planejada | Estrutura de páginas, rotas React, layouts do dashboard            |
+| `security-best-practices`| 🔜 planejada | Checklist de segurança geral da aplicação                          |
+| `rust-error-handling`    | 🔜 planejada | Padrões de erro com thiserror/anyhow no Rust                       |
 
 ---
 

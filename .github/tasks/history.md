@@ -13,3 +13,22 @@
 - 2026-03-25 — [DB] Verificar docs/database/indexes.md — Etapa 1 (Planejamento): Identificados índices obrigatórios em docs/database/indexes.md; subtarefas criadas.
 - 2026-03-25 — [SCRIPTS] Remover prints/debug em scripts — Etapa 1 (Planejamento): Listadas ocorrências de print/console.log; subtarefas criadas.
 - 2026-03-25 — [CLEANUP] Consolidar tokens/ativos gerados — Etapa 1 (Planejamento): Arquivos encontrados em docs/design/generated: tokens-generated.css, ui-styles.css; subtarefas criadas.
+- 2026-03-25 — [GUIDES] Atualizar copilot-instructions e GEMINI — Etapa 2 (Implementação): Referência Gemini 2.5 Pro → 3.1 Flash atualizada em 7 arquivos.
+- 2026-03-25 — [AUDIT] Auditoria completa do repositório — 24 problemas identificados (5 críticos, 6 altos, 13 médios) e plano de 7 fases criado e aprovado.
+- 2026-03-25 — [INFRA] docker-compose.yml — healthcheck corrigido: `mongo` → `mongosh` (depreciado no MongoDB 6.0). Rede `largo_net` adicionada.
+- 2026-03-25 — [DOCS] skills-lock.json — `docs-guidelines` registrada (sourceType: local, hash SHA256 do SKILL.md).
+- 2026-03-25 — [DOCS] docs-guidelines/evals/evals.json — Criado evals mínimo com 2 casos de teste para validar a skill.
+- 2026-03-25 — [DOCS] copilot-instructions.md — Tabela de skills atualizada: 6 skills instaladas identificadas com ✅; 8 skills planejadas identificadas com 🔜.
+- 2026-03-25 — [DOCS] .gemini/GEMINI.md — Removida referência a skill `security-best-practices` inexistente; corrigido path `docs/arquitetura/` → `docs/architecture/`.
+- 2026-03-25 — [DOCS] docs/backend/index.md + README.md — Links quebrados corrigidos; arquivos consolidados em único README.md.
+- 2026-03-25 — [DOCS] docs/ai/README.md — Link quebrado corrigido; qualificador "em breve" removido.
+- 2026-03-25 — [DOCS] docs/design/tokens.md — Path de fonte corrigido: `docs/design/azonix` → `docs/design/assets/fonts/Azonix.otf`. Nota de validação ui-ux-pro-max adicionada.
+- 2026-03-25 — [DOCS] docs/skills/ — README.md expandido com documentação completa das 6 skills instaladas e 8 planejadas. index.source.md removido (redundante).
+- 2026-03-25 — [DOCS] docs/database/setup.md — Clarificado que serviço `mongo-init` está planejado (ADR 03 proposto); `mongo` → `mongosh` nos comandos.
+- 2026-03-25 — [DOCS] docs/database/schema.md — Removida referência ao script `scripts/db/init_indexes.py` (inexistente).
+- 2026-03-25 — [DOCS] docs/architecture/adr/README.md — Criado índice completo dos 4 ADRs com status e convenções.
+- 2026-03-25 — [UI] docs/frontend/ui/examples/ — Corrigidos 3 links: Card.md, ProgressElectric.md (`docs/ui/styles.css` → `docs/design/generated/ui-styles.css`), Logo.md (`/docs/design/logo.png` → `docs/design/assets/logo.png`).
+- 2026-03-25 — [UI] docs/design/brand-guidelines.md — Atualizado: logo já disponível em `docs/design/assets/logo.png`.
+- 2026-03-25 — [UI] docs/frontend/ui/components.md — Classes Tailwind genéricas substituídas por `var(--color-*)` tokens do projeto.
+- 2026-03-25 — [UI] docs/design/generated/ui-styles.css — Header comment adicionado explicando propósito e relação com tokens-generated.css.
+- 2026-03-25 — [DESIGN] ui-ux-pro-max — Validação do design system: Dark Mode OLED confirmado como padrão correto para finance/productivity dashboard. Paleta Obsidian Black + Electric Volt + Steel Blue: WCAG AAA. Nota sobre Azonix (display font) vs Inter (body) adicionada.
