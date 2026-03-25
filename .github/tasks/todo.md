@@ -5,7 +5,6 @@
 
 # Tarefa: [DB] Verificar docs/database/indexes.md
 
-- [ ] Etapa 1: Planejamento (Comparar queries com índices declarados)
 - [ ] Etapa 2: Implementação (Criar tarefas para índices faltantes)
 - [ ] Etapa 3: Validação (Atualizar documentação e exemplos)
 
