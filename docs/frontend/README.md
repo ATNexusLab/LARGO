@@ -2,7 +2,7 @@
 
 Índice da área Frontend.
 
-- [Web (site)](./web/index.md)
+- [Web (site)](./web/README.md)
 - [UI (componentes)](./ui/components.md)
 
 Use este README como ponto de entrada para a documentação front-end (web + UI).

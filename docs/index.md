@@ -5,12 +5,12 @@ Esta é a fonte única de verdade (single source of truth) para a documentação
 Sumário
 
 - [Backend (gateway)](./backend/index.md)
-- [AI Worker (ai)](./ai/index.md)
+- [AI Worker (ai)](./ai/README.md)
 - [Frontend (web + ui)](./frontend/README.md)
-- [Database](./database/index.md)
+- [Database](./database/README.md)
 - [Arquitetura e ADRs](./architecture/)
-- [Skills](./skills/index.md)
-- [Agents & Instruções](./agents/index.md)
+- [Skills](./skills/README.md)
+- [Agents & Instruções](./agents/README.md)
 
 Convenções
 
