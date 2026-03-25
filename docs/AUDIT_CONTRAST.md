@@ -1,8 +1,0 @@
-# Auditoria de Contraste (WCAG)
-- text (#fafafa) on bg (#09090b): 19.06 — PASS (>=4.5)
-- text (#fafafa) on surface (#18181b): 16.97 — PASS (>=4.5)
-- primary (#d9f99d) on bg (#09090b): 17.04 — PASS (>=4.5)
-- primary (#d9f99d) on surface (#18181b): 15.18 — PASS (>=4.5)
-- secondary (#38bdf8) on bg (#09090b): 9.29 — PASS (>=4.5)
-- success (#16A34A) on bg (#09090b): 6.04 — PASS (>=4.5)
-- danger (#DC2626) on bg (#09090b): 4.12 — AA Large (>=3.0)
