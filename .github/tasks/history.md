@@ -10,6 +10,14 @@
 - 2026-03-25 — [GUIDES] Atualizar .github/copilot-instructions.md — Etapa 2 (Implementação): Atualizada referência para Gemini 3.1 Flash.
 - 2026-03-25 — [GUIDES] Atualizar README.md — Etapa 2 (Implementação): Atualizadas referências de versão Gemini.
 - 2026-03-25 — [GUIDES] Atualizar docs/index.md, docs/ai/prompts.md, docs/ai/README.md, docs/backend/index.md e .gemini/GEMINI.md — Etapa 2 (Implementação): Padronizadas referências a Gemini 3.1 e adicionado guidance TOON.
+- 2026-04-22 — [DISCOVERY] Task 0 — Recovery audit: Superfície Git local e GitHub auditadas; resultado consolidado = sem código recuperável, com evidência apenas documental/local parcial e recomendação de bootstrap.
+- 2026-04-22 — [DOCS] Task 0.1 — Reconciliar documentação e backlog com o estado real: README, docs/index e READMEs principais ajustados para separar estado atual vs alvo; docker-compose clarificado como Mongo-only nesta branch.
+- 2026-04-22 — [ARCH] Task 1.0 — Fechar ADR 03 e contrato inicial de `tasks`: ADR 03 aceito; `POST /tasks` definido como primeiro fluxo, sem auth de aplicação nesta foundation, com `db-init` idempotente e recurso `tasks` mínimo.
+- 2026-04-22 — [TEST] Task 1.0.1 — Suite da foundation e de `POST /tasks` aprovada: cobertura de healthcheck, conectividade Mongo, smoke path de `db-init`, sucesso e falhas `400`/`422`/`503` de `POST /tasks`, com aceite técnico de `architect` e `specs-collector` e aceite explícito do usuário liberando a implementação.
+- 2026-04-22 — [FEAT] Task 1.1 — Scaffold production-ready do gateway: `/healthz` implementado com `200 OK`, conectividade Mongo validada explicitamente e base do gateway preparada para a foundation real.
+- 2026-04-22 — [DB] Task 1.2 — Base operacional do Mongo e skeleton de `db-init`: `db-init` Rust tornou-se idempotente, garantindo collection `tasks`, validator mínimo e smoke path consistente sem índices secundários especulativos.
+- 2026-04-22 — [FEAT] Task 1.3 — Implementar `POST /tasks` com persistência ponta a ponta: contrato HTTP implementado com validação explícita, persistência Mongo ponta a ponta e respostas `201` / `400` / `422` / `503` conforme spec.
+- 2026-04-22 — [DOCS] Task 1.4 — Sincronizar documentação da foundation: README, docs/index, docs/backend/README e docs/database/setup atualizados para refletir gateway versionado no repositório, `db-init` existente e compose ainda limitado ao Mongo.
 - 2026-03-25 — [DB] Verificar docs/database/indexes.md — Etapa 1 (Planejamento): Identificados índices obrigatórios em docs/database/indexes.md; subtarefas criadas.
 - 2026-03-25 — [SCRIPTS] Remover prints/debug em scripts — Etapa 1 (Planejamento): Listadas ocorrências de print/console.log; subtarefas criadas.
 - 2026-03-25 — [CLEANUP] Consolidar tokens/ativos gerados — Etapa 1 (Planejamento): Arquivos encontrados em docs/design/generated: tokens-generated.css, ui-styles.css; subtarefas criadas.
