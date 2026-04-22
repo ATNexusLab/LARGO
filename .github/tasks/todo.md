@@ -1,25 +1,30 @@
-# Tarefa: [FEAT] Implementar gateway Rust/Axum (estrutura inicial)
+# Backlog Ativo — LARGO
 
-- [ ] Etapa 1: Planejamento (Consultar ADR 04; criar skill axum-patterns com skill-creator)
-- [ ] Etapa 2: Implementação (Criar crate gateway com rotas /api/expenses, /api/tasks, JWT middleware)
-- [ ] Etapa 3: Validação (cargo test passando; conecta ao MongoDB local)
-- [ ] Etapa 4: Documentação (Atualizar docs/backend/README.md e docs/backend/rust/README.md)
+- [ ] Task 2 — [AI] Foundation do ai-worker
+  - **Agente responsável:** `backend`
+  - **Dependências:** `Task 1.4`
+  - **Status:** pending
+  - **Objetivo:** introduzir o serviço FastAPI já acoplado a contratos estáveis do gateway.
+  - **Critérios de aceite:**
+    - Dado a foundation do gateway estabilizada, quando a task terminar, então o ai-worker deve expor contrato explícito compatível com o gateway.
 
-# Tarefa: [FEAT] Implementar AI Worker Python/FastAPI (estrutura inicial)
+- [ ] Task 3 — [FEAT] Foundation do frontend para `tasks`
+  - **Agente responsável:** `frontend`
+  - **Dependências:** `Task 1.4`
+  - **Status:** pending
+  - **Objetivo:** criar a primeira surface real consumindo o contrato estabilizado de `tasks`.
+  - **Critérios de aceite:**
+    - Dado o contrato de `tasks` estabilizado, quando a task terminar, então o frontend deve consumir o fluxo inicial sem depender de OCR/Gemini.
 
-- [ ] Etapa 1: Planejamento (Consultar ADR 02 para modelo Gemini; criar skill ai-worker-patterns com skill-creator)
-- [ ] Etapa 2: Implementação (Criar FastAPI com endpoint de OCR + Gemini; usar toon_format)
-- [ ] Etapa 3: Validação (pytest passando; conecta ao gateway local)
-- [ ] Etapa 4: Documentação (Atualizar docs/ai/README.md e docs/ai/prompts.md)
+- [ ] Task 4 — [INFRA] Fechar docker-compose end-to-end
+  - **Agente responsável:** `devops`
+  - **Dependências:** `Task 2`, `Task 3`
+  - **Status:** pending
+  - **Objetivo:** consolidar a execução completa do sistema no compose.
+  - **Critérios de aceite:**
+    - Dado gateway, ai-worker, frontend e Mongo prontos, quando a task terminar, então o compose deve refletir a topologia real e permitir o fluxo mínimo fim a fim.
 
-# Tarefa: [FEAT] Implementar frontend React/Bun (estrutura inicial)
+## Notas operacionais
 
-- [ ] Etapa 1: Planejamento (Consultar skill ui-ux-pro-max, vercel-react-best-practices, shadcn)
-- [ ] Etapa 2: Implementação (Criar app React + Vite; aplicar tokens de design; páginas principais)
-- [ ] Etapa 3: Validação (bun test passando; conecta ao gateway local)
-- [ ] Etapa 4: Documentação (Atualizar docs/frontend/)
-
-## Nota de infraestrutura
-Durante o desenvolvimento, cada serviço roda localmente (cargo run / uvicorn / bun dev).
-MongoDB fica em Docker (`docker compose up mongo`).
-Docker Compose completo (gateway + ai-worker + web) será montado apenas ao finalizar o desenvolvimento.
+- A retomada segue a preferência [[prefer-production-ready-over-mvp]].
+- Fora da `Task 1`: `ai-worker`, frontend, OCR/Gemini/TOON e fluxos além de `POST /tasks` + healthcheck.

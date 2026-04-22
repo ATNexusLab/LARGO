@@ -8,9 +8,9 @@ Coleção: expenses
 - idx_expenses_user_date: { user_id: 1, date: -1 } — consultas do usuário por período
 
 Coleção: tasks
-- idx_tasks_status: { status: 1 } — listagem por estado (pending/in_progress/done)
-- idx_tasks_due_date: { due_date: 1 } — busca por prazo
-- idx_tasks_user: { user_id: 1 } — tarefas do usuário
+- Foundation Task 1: nenhum índice secundário adicional é obrigatório.
+- O índice `_id` padrão do Mongo é suficiente para o primeiro fluxo `POST /tasks`, que é apenas de criação.
+- Índices como `{ status: 1 }`, `{ due_date: 1 }` ou `{ user_id: 1 }` ficam adiados até existirem read paths e autenticação correspondentes.
 
 Coleção: users
 - uniq_users_email: { email: 1 } (unique) — garante unicidade de login
@@ -19,4 +19,4 @@ Observações e práticas
 - Criar índices compostos quando consultas frequentes envolvem múltiplos filtros (ex.: user_id + date).
 - Monitorar cardinalidade e remover índices não utilizados.
 - Declarar índices com nomes explícitos facilita verificação em scripts e testes.
-- Todos os índices devem ser criados pelo script de inicialização para manter infra idempotente.
+- Todos os índices que forem necessários devem ser criados pelo `db-init` para manter a infra idempotente.

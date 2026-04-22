@@ -11,22 +11,47 @@ Passos mínimos
 
    docker compose up -d mongo
 
-3) Aplicar validators e índices:
+3) Aplicar validator e estrutura mínima da foundation:
 
-   NOTA: O serviço `mongo-init` (container one-shot) está **planejado** via ADR 03 (proposto, ainda não aceito).
-   Enquanto ADR 03 não for aceito e implementado, usar o script Python para setup manual (teste/depuração):
+   O caminho autoritativo foi fechado no ADR 03: um job one-shot em Rust chamado `db-init`.
 
-       pip install -r scripts/requirements.txt
-       MONGO_URI="mongodb://admin:secret@localhost:27017/largo?authSource=admin" python scripts/db/init_indexes.py
+   Contrato operacional esperado para a Task 1:
 
-   Quando ADR 03 for aceito e o binário Rust `db-init` estiver disponível, o comando será:
+   - `db-init` deve ser executado com o Mongo já disponível;
+   - cria/garante a coleção `tasks`;
+   - aplica o validator mínimo da collection;
+   - garante o conjunto mínimo de índices da foundation;
+   - pode ser executado repetidamente sem efeitos colaterais incorretos.
+
+   **Estado atual implementado:** o binário já existe no crate `gateway`, mas ainda **não** existe serviço `db-init` no `docker-compose.yml`.
+
+   Caminho manual atual (host local):
+
+       export MONGO_URI="mongodb://admin:change_me@127.0.0.1:27017/largo?authSource=admin"
+       export MONGO_DB_NAME=largo
+       cargo run -p gateway --bin db-init
+
+   Observação importante:
+   - o `MONGO_URI` de `.env.example` usa o hostname `mongo`, adequado para comunicação entre containers;
+   - ao rodar o binário Rust no host, use `127.0.0.1`/`localhost` enquanto o compose continuar materializando apenas o MongoDB.
+
+   Comando alvo futuro, quando o compose também materializar esse job:
        docker compose run --rm db-init
 
 Verificações
 ------------
 - Conferir coleções e índices:
-  docker compose exec mongo mongosh --eval "db.getSiblingDB('largo').getCollectionNames()"
-  docker compose exec mongo mongosh --eval "db.getSiblingDB('largo').expenses.getIndexes()"
+   docker compose exec mongo mongosh --eval "db.getSiblingDB('largo').getCollectionNames()"
+   docker compose exec mongo mongosh --eval "db.getSiblingDB('largo').tasks.getIndexes()"
+
+- Smoke path mínimo esperado após `db-init`:
+  - uma execução em banco vazio termina com sucesso;
+  - uma segunda execução também termina com sucesso;
+  - inserção de documento válido em `tasks` funciona;
+  - inserção de documento inválido para `tasks` falha por validator.
+
+- Verificação adicional útil na foundation atual:
+   - `cargo test -p gateway` cobre healthcheck, conectividade Mongo, `POST /tasks` e smoke path de `db-init`.
 
 Backup e restauração
 --------------------
@@ -37,3 +62,5 @@ Notas
 -----
 - Não commitar o arquivo `.env` com segredos. Mantenha `.env.example` atualizado.
 - Em ambiente de produção considerar replica set e estratégias de backup automatizado.
+- `db-init` não substitui migrations de produto futuras; ele é o mecanismo inicial autorizado para preparar a foundation do banco.
+- O compose atual continua sendo **Mongo-only**; `db-init` e gateway seguem em caminho manual/Rust até entrarem como serviços.

@@ -1,34 +1,94 @@
-# ADR: Estratégia de Migrations e Inicialização do Banco
+# ADR 03 — Estratégia de inicialização e migrações do banco
 
+Status: Aceito
 Data: 2026-03-25
-Status: proposed
 
-Contexto
+## Contexto
 
-O projeto define o Gateway em Rust como único responsável pelo acesso ao MongoDB (Axum + Mongo adapter). A inicialização atual usava um job Python (`mongo-init`) para criar índices e seeds, o que introduz dependência externa e desalinhamento com a stack.
+Na branch `feat/recovery-foundation-start`, o único componente operacional versionado é o MongoDB via `docker-compose.yml`. A foundation inicial precisa entregar um caminho confiável para persistir `POST /tasks` ponta a ponta, sem reintroduzir dependências paralelas de runtime nem esconder falhas de infraestrutura dentro do startup do gateway.
 
-Decisão
+Também já foi consolidado que:
 
-Reescrever a lógica de migrations/initialization em Rust, fornecendo um binário de "migrations" ou "db-init" que:
+- a capability inicial é `tasks`;
+- o primeiro fluxo HTTP obrigatório é `POST /tasks`;
+- não existe código recuperável para `gateway/`, `ai-worker` ou `web/`;
+- a retomada seguirá por bootstrap incremental.
 
-- Execute criação de índices, validações e sementes necessárias.
-- Tenha comportamento retry/wait para aguardar o Mongo pronto.
-- Seja empacotado via Docker (multi-stage) e usado como job `depends_on`/`command` no `docker-compose` quando necessário.
+## Decisão
 
-Consequências
+Adotar um binário/job one-shot em Rust chamado `db-init` como mecanismo autoritativo de inicialização estrutural do MongoDB.
 
-- Alinhamento da stack (mesma linguagem da infra principal).
-- Menor surface area de runtime (sem pip installs em startup).
-- Melhor integração com as práticas de logging e error handling do gateway.
+Para a foundation da Task 1, `db-init` deve:
 
-Alternativas consideradas
+- aguardar o Mongo ficar disponível com retry e timeout explícitos;
+- garantir de forma idempotente a existência da coleção `tasks`;
+- aplicar o validator mínimo da coleção `tasks`;
+- garantir o conjunto mínimo de índices definido para a foundation;
+- encerrar com código `0` em sucesso e código diferente de `0` em falha operacional.
 
-- Manter o python init: mais rápido para protótipos, mas cria dependência duplicada.
-- Usar `/docker-entrypoint-initdb.d`: funciona apenas para scripts simples.
+Para evitar acoplamento frágil entre bootstrap e runtime:
 
-Plano de migração
+- `db-init` **não** deve ficar embutido no startup normal do gateway;
+- o gateway pode assumir que o banco já foi inicializado pelo caminho operacional definido;
+- seeds de negócio ficam fora do escopo da foundation;
+- `expenses` e `users` não fazem parte do smoke path obrigatório da Task 1.
 
-1. Implementar binário Rust `db-init` que use `mongodb` crate.
-2. Criar Dockerfile multistage para `db-init` e atualizar `docker-compose` para suportar job one-off.
-3. Migrar lógica do atual script Python (se existir) para Rust e testar localmente.
+## Consequências
 
+- A inicialização do banco fica alinhada com a stack principal de backend (Rust), reduzindo drift operacional.
+- Falhas de preparação do Mongo ficam visíveis como falhas do job `db-init`, em vez de se manifestarem como erros indiretos durante requests.
+- O contrato de `POST /tasks` passa a depender de um passo de bootstrap explícito e observável.
+- A foundation pode evoluir coleção por coleção, começando por `tasks`, sem bloquear por escopo maior de banco.
+
+## Definition of Done operacional para a foundation
+
+Para a Task 1, considera-se que o skeleton/smoke path de `db-init` está fechado quando:
+
+1. Em uma base vazia, uma execução de `db-init` cria/prepara a coleção `tasks` com validator e índices mínimos esperados.
+2. Uma segunda execução não falha e não duplica artefatos (idempotência).
+3. Após a execução, uma inserção compatível com o contrato mínimo de `POST /tasks` é aceita.
+4. Após a execução, uma inserção incompatível com o schema mínimo é rejeitada pelo banco.
+
+## Alternativas consideradas
+
+### 1. Manter inicialização em Python
+
+**Prós**
+- Mais rápida para prototipação imediata.
+
+**Contras**
+- Duplica stack operacional sem necessidade.
+- Aumenta surface area de build/runtime.
+- Introduz drift entre contratos documentados no backend e setup do banco.
+
+**Decisão:** rejeitada.
+
+### 2. Usar `docker-entrypoint-initdb.d`
+
+**Prós**
+- Simples para scripts estáticos.
+
+**Contras**
+- Ruim para evolução incremental idempotente.
+- Limitada para lógica de retry/wait e observabilidade.
+- Acopla preparação do schema ao ciclo de vida do container do Mongo.
+
+**Decisão:** rejeitada.
+
+### 3. Executar migrations automaticamente no startup do gateway
+
+**Prós**
+- Menos um passo operacional aparente.
+
+**Contras**
+- Mistura concerns de runtime HTTP com preparação de infraestrutura.
+- Pode gerar condições de corrida em múltiplas instâncias.
+- Dificulta diagnosticar se a falha está no serviço ou no banco.
+
+**Decisão:** rejeitada.
+
+## Próximos passos autorizados por este ADR
+
+1. Implementar o binário Rust `db-init`.
+2. Empacotar `db-init` como execução one-shot no ambiente local.
+3. Materializar apenas o schema mínimo de `tasks` necessário para `POST /tasks`.
