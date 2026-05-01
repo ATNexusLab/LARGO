@@ -2,3 +2,4 @@
 /.env
 
 /.agents/skills/ui-ux-pro-max/scripts/__pycache__
+/target

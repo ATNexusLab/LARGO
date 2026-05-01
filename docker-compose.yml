@@ -1,3 +1,6 @@
+# Estado atual da branch: este compose materializa apenas a base MongoDB.
+# Gateway, ai-worker e frontend seguem documentados como alvo, mas ainda não
+# existem como serviços versionados neste repositório.
 services:
   mongo:
     image: mongo:6.0.8
@@ -8,7 +11,8 @@ services:
       - MONGO_INITDB_DATABASE=${MONGO_DB_NAME}
     volumes:
       - mongo_data:/data/db
-    # Porta exposta ao host para desenvolvimento local (gateway/ai-worker rodam fora do Docker)
+    # Porta exposta ao host para desenvolvimento local e bootstrap da foundation.
+    # Hoje este é o único serviço operacional disponível no compose.
     ports:
       - "27017:27017"
     # Não expor Mongo diretamente ao host em produção — remover ports: e usar apenas a rede interna

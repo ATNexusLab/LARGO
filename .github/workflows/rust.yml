@@ -1,0 +1,46 @@
+name: Rust CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check:
+    name: Check & Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - name: Rustfmt Check
+        run: cargo fmt --all -- --check
+      - name: Clippy Lint
+        run: cargo clippy -- -D warnings
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    # Integration tests fail without MongoDB, so for now we run only unit tests
+    # or expect failures if a DB isn't provisioned. 
+    # In a real scenario, we'd add a MongoDB service container here.
+    services:
+      mongodb:
+        image: mongo:6.0.8
+        ports:
+          - 27017:27017
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Run Gateway Tests
+        run: cargo test -p gateway
+        env:
+          MONGO_URI: mongodb://localhost:27017
+          MONGO_DB_NAME: largo_test

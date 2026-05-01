@@ -1,0 +1,4 @@
+[workspace]
+members = ["gateway"]
+default-members = ["gateway"]
+resolver = "2"

@@ -44,6 +44,6 @@ Estes são os "protocolos" que garantem a eficiência do sistema.
 | :--- | :--- | :--- |
 | **IA/Prompts** | **TOON (Token-Oriented Object Notation)** | Reduzir o custo de tokens no Gemini Free Tier em ~40%. |
 | **Financeiro** | **Hierarquia Visual Obrigatória** | Legibilidade máxima: Rótulo → Valor (BRL) → Contexto. |
-| **Segurança** | **JWT (Stateless)** | Autenticação segura via claims validadas no Gateway Rust. |
+| **Segurança** | **JWT (Stateless)** | Alvo arquitetural de autenticação via claims validadas no Gateway Rust; exceção explícita da foundation Task 1: `POST /tasks` opera sem autenticação, em modo local/bootstrap, até a capability de identidade existir. |
 | **Tipagem** | **TypeScript/Rust Strict** | Eliminar erros de runtime e garantir contratos de dados sólidos. |
 

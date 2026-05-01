@@ -8,7 +8,7 @@ Registro de decisões arquiteturais do projeto LARGO. Cada ADR documenta o conte
 | ---- | ---------------------------------------------------------- | ------------------------------- | --------- |
 | 01   | [database/01-adr-db.md](database/01-adr-db.md)             | Banco de dados: MongoDB         | Aceito    |
 | 02   | [ai/02-adr-gemini-model-selection.md](ai/02-adr-gemini-model-selection.md) | Seleção do modelo Gemini | Aceito |
-| 03   | [database/03-adr-migrations.md](database/03-adr-migrations.md) | Estratégia de migrações DB  | Proposto  |
+| 03   | [database/03-adr-migrations.md](database/03-adr-migrations.md) | Estratégia de migrações DB  | Aceito    |
 | 04   | [architecture/04-architecture.md](architecture/04-architecture.md) | Arquitetura macro do sistema | Aceito |
 
 ## Convenções

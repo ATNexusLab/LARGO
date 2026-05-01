@@ -1,5 +1,10 @@
 Schema e exemplos de documentos — Banco: `largo`
 
+Observação de escopo da branch
+------------------------------
+- A foundation operacional inicial cobre apenas o recurso `tasks` necessário para `POST /tasks`.
+- `expenses` e `users` seguem documentados como alvo do produto, mas não entram no smoke path obrigatório da Task 1.
+
 Collections principais
 ---------------------
 1) expenses (gastos / NF-e)
@@ -44,22 +49,44 @@ expenses_validator = {
   }
 }
 
-2) tasks (tarefas)
-- Campos principais
+2) tasks (foundation Task 1)
+- Campos mínimos da foundation
   - _id: ObjectId
   - title: string
-  - description: string (opcional)
   - status: enum: ['pending','in_progress','done','blocked']
   - created_at: date
-  - due_date: date (opcional)
-  - user_id: ObjectId (owner)
+
+- Regras da foundation
+  - `title` é obrigatório
+  - `status` é persistido pelo servidor e nasce como `pending` em `POST /tasks`
+  - `created_at` é persistido pelo servidor
+  - `description`, `due_date` e `user_id` ficam fora do contrato mínimo inicial
 
 Exemplo (documento):
 {
   "title": "Revisar recibos do mês",
   "status": "pending",
-  "created_at": {"$date": "2026-03-23T10:00:00Z"},
-  "user_id": "ObjectId(..)"
+  "created_at": {"$date": "2026-03-23T10:00:00Z"}
+}
+
+JSON Schema (validator mínimo da foundation):
+
+tasks_validator = {
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["title", "status", "created_at"],
+    "properties": {
+      "title": {
+        "bsonType": "string",
+        "minLength": 1,
+        "maxLength": 120
+      },
+      "status": {
+        "enum": ["pending", "in_progress", "done", "blocked"]
+      },
+      "created_at": {"bsonType": "date"}
+    }
+  }
 }
 
 3) users (usuários)
@@ -72,4 +99,4 @@ Exemplo (documento):
 
 Observação
 ----------
-Schemas são deliberadamente permissivos para permitir evolução rápida. Validação no gateway (Rust) e no AI Worker (Python) deve garantir contratos de entrada antes da persistência.
+Schemas no banco permanecem deliberadamente mínimos para permitir evolução controlada. A validação de contrato HTTP deve ser mais estrita no gateway do que no Mongo.
