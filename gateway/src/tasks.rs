@@ -195,3 +195,31 @@ fn contains_string(values: &[Bson], expected: &str) -> bool {
         .iter()
         .any(|value| matches!(value, Bson::String(found) if found == expected))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    #[test]
+    fn deve_validar_payload_valido() {
+        let payload = json!({ "title": "Test Task" });
+        let result = validate_create_task_payload(payload);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap().title, "Test Task");
+    }
+
+    #[test]
+    fn deve_rejeitar_titulo_curto() {
+        let payload = json!({ "title": "" });
+        let result = validate_create_task_payload(payload);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn deve_rejeitar_campos_extras() {
+        let payload = json!({ "title": "Valid", "extra": "field" });
+        let result = validate_create_task_payload(payload);
+        assert!(result.is_err());
+    }
+}
