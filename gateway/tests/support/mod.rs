@@ -4,7 +4,6 @@ use std::{
     path::PathBuf,
     process::Command,
     sync::OnceLock,
-    thread,
     time::{Duration, SystemTime, UNIX_EPOCH},
 };
 
@@ -93,7 +92,7 @@ async fn wait_for_mongo() -> Result<()> {
             return Ok(());
         }
 
-        thread::sleep(Duration::from_secs(1));
+        tokio::time::sleep(Duration::from_secs(1)).await;
     }
 
     Err(anyhow!(
